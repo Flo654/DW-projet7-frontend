@@ -41,10 +41,10 @@ export default {
                     } 
                 })
                 const data = await response.json()
-                
                 users.value = data
                
             } catch (error) {
+                return res.status(500).json({error: error.message})
                 
             }
             

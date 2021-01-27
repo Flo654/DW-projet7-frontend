@@ -3,7 +3,7 @@
     <input type="text" required placeholder="Nom d'utilisateur" v-model="userName" aria-label="username">
     <input type="password" required placeholder="password" v-model="password" aria-label="password">
     <div class="error">{{error}}</div>
-    <button>Log in</button>
+    <button>Envoyer</button>
   </form>
 </template>
 

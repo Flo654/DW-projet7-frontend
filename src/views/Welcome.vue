@@ -6,12 +6,12 @@
     <div v-if="showLogin" >
       <h1 >Se connecter</h1>
       <LoginForm @login="goToMainVue" />
-      <p>No account yet ? <span @click="showLogin = false">Signup</span> instead</p>
+      <p>Pas encore de compte ? <span @click="showLogin = false">creez le</span> alors !</p>
     </div>
     <div v-else >
       <h1>Creer un compte</h1>
       <SignupForm />
-      <p>Already an account <span @click="showLogin =true">login instead</span></p>
+      <p>Déja un compte <span @click="showLogin =true">Connectez vous !</span></p>
       
     </div>
      
