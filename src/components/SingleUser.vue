@@ -43,7 +43,39 @@ export default {
         const userStatus = ref( props.user.isAdmin )
         
 
-        const switchToUser =()=>{
+        const switchToUser = async()=>{
+             userStatus.value = !userStatus.value
+            console.log(userStatus.value);
+             const id = props.user.id
+             console.log(id);
+            const url = 'http://localhost:3030/api/users/update/' + id
+            const newAccountTypeUser = {
+                isAdmin: userStatus.value
+            }   
+            
+            try {
+                const response = await fetch(url,{
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Bearer " + sessionStorage.token
+                        },
+                    body: JSON.stringify(newAccountTypeUser)
+                })            
+                if (!response.ok)   {
+                    
+                    console.log('pas de reponse')
+                    return
+                }
+                console.log(props.user.userName + ' est Utilisateur')
+                             
+            
+            } 
+            catch (err) {
+                console.log(err);
+            
+                
+            }
             
         }
 
