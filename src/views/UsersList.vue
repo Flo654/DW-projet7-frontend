@@ -15,7 +15,7 @@
             </div>
         </div> 
         </header>
-        <Users :users='users' />      
+        <Users :users='usersWithoutUserLogged' />      
     </section>
     <div v-else>
             <Spinner/>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Users from "../components/Users";
 import Spinner from '../components/Spinner'
 export default {
@@ -43,7 +43,7 @@ export default {
                 const data = await response.json()
                 
                 users.value = data
-                console.log(users);
+               
             } catch (error) {
                 
             }
@@ -52,11 +52,16 @@ export default {
 
         }
         getUsers()
+         // creation d'un tableau qui ne contient pas l'utilisateur connecté
+                const use = sessionStorage.getItem("user")                
+                const usersWithoutUserLogged = computed(()=>{
+                    return users.value.filter((item)=>item.id != use)
+                })
       
       
 
 
-      return{  users }
+      return{  users, usersWithoutUserLogged }
     }
 }
 </script>
