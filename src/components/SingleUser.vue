@@ -44,6 +44,7 @@ export default {
         
 
         const switchToUser = async()=>{
+            
              userStatus.value = !userStatus.value
             console.log(userStatus.value);
              const id = props.user.id
@@ -68,6 +69,7 @@ export default {
                     return
                 }
                 console.log(props.user.userName + ' est Utilisateur')
+                history.go(0)
                              
             
             } 
@@ -103,6 +105,7 @@ export default {
                     return
                 }
                 console.log(props.user.userName + ' est Administrateur')
+                history.go(0)
                              
             
             } 

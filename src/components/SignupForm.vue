@@ -44,27 +44,26 @@ export default {
     const isOk = ref(false)
 
     const router = useRouter()
-    
+
+    // afficchage des erreurs si les données saisies ne respectent pas le format demandé
     const verifications = ()=>{
       
       const inputPassword = document.getElementById("password")
       const inputUsername = document.getElementById('username')
     
       if(inputPassword.validity.patternMismatch){
-      console.log('pasok');
-      //inputPassword.setCustomValidity('pas Ok')
-      error.value = 'le mot de passe valide doit avoir de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux: $ @ % * + - _ !'
+      
+        error.value = 'le mot de passe valide doit avoir de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux: $ @ % * + - _ !'
       }
       if(inputUsername.validity.patternMismatch){
-      console.log('pasok');
-      //inputPassword.setCustomValidity('pas Ok')
-      error.value = 'Le pseudo doit commencer par 3 lettres au minimum et comporter 20 caracteres max, pas de caractères spéciaux'
+       
+        error.value = 'Le pseudo doit commencer par 3 lettres au minimum et comporter 20 caracteres max, pas de caractères spéciaux'
       }
     }
     
-    
+    // envoie des données de connexion vers l'api pour enregistrement dans database
     const handleSubmit = async() => {
-      isOk.value=!isOk.value
+      
       error.value = null           
       const url = 'http://localhost:3030/api/users/signup'
 
@@ -86,6 +85,7 @@ export default {
               return 
           } 
           error.value = null
+            isOk.value=!isOk.value
             console.log('utilisateur enregistré');
             context.emit('signup')            
       } 
